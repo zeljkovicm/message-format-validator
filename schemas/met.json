@@ -109,7 +109,7 @@
       },
       "modelVersion": {
         "description": "Version of the message model.",
-        "type": "string"
+        "type": ["integer", "string"]
       },
       "timeUtc": {
         "description": "Timestamp when the message was created (UTC).",
