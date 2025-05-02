@@ -1,0 +1,106 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "SWR Message Schema",
+    "description": "Defines the structure for SWR type messages based on provided requirements.",
+    "type": "object",
+    "properties": {
+      "body": {
+        "description": "Main body of the SWR message containing software information.",
+        "type": "object",
+        "properties": {
+          "software": {
+            "description": "Array of software items information.",
+            "type": "array",
+            "items": {
+              "description": "An individual software item object.",
+              "type": "object",
+              "properties": {
+                "imagePath": { "type": "string" },
+                "name": { "type": "string" },
+                "startType": { "type": "string" },
+                "status": { "type": "string" },
+                "type": { "type": "string" },
+                "version": { "type": "string" }
+              },
+              "required": [
+                "imagePath",
+                "name",
+                "startType",
+                "status",
+                "type",
+                "version"
+              ],
+              "additionalProperties": false
+            },
+             "minItems": 1
+          }
+        },
+        "required": ["software"],
+        "additionalProperties": false
+      },
+      "creator": {
+        "description": "Information about the application that created the message.",
+        "type": "object",
+        "properties": {
+          "applicationName": { "type": "string" },
+          "applicationVersion": { "type": "string" },
+          "computerName": { "type": "string" }
+        },
+        "required": [
+          "applicationName",
+          "applicationVersion",
+          "computerName"
+        ],
+        "additionalProperties": false
+      },
+      "deviceInfo": {
+        "description": "Information about the device sending the message.",
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "type": { "type": "string" }
+        },
+        "required": [
+          "id",
+          "name",
+          "type"
+        ],
+        "additionalProperties": false
+      },
+      "messageId": {
+        "description": "Unique identifier for the message.",
+        "type": "string"
+      },
+      "messageType": {
+        "description": "The type of the message.",
+        "type": "string",
+        "enum": ["SWR"]
+      },
+      "modelVersion": {
+        "description": "Version of the message model.",
+        "type": ["integer", "string"]
+      },
+      "siteId": {
+        "description": "Identifier for the site.",
+        "type": "string"
+      },
+      "timeUtc": {
+        "description": "Timestamp when the message was created (UTC).",
+        "type": "string",
+        "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
+        
+      }
+    },
+    "required": [
+      "body",
+      "creator",
+      "deviceInfo",
+      "messageId",
+      "messageType",
+      "modelVersion",
+      "siteId",
+      "timeUtc"
+    ],
+    "additionalProperties": false
+  }
